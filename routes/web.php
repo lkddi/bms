@@ -22,3 +22,8 @@ Route::any('/cxbz', 'CxController@cxbenzhou');
 Route::any('/cxby', 'CxController@cxbenyue');
 Route::get('/quire', 'WeChatController@quire');
 Route::any('/mendian', 'MendianController@index');
+
+
+Auth::routes();
+Route::redirect('/', '/home', 301);
+Route::get('/home', 'HomeController@index')->name('home');

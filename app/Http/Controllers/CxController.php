@@ -81,7 +81,7 @@ class CxController extends Controller
 		$lists = Sale::where($cxname,$tj,$cxs)
 					->whereBetween('date',[date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"))),date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")))])
 					->paginate(20);
-
+        $lists->withPath('/cxbz?'.$cxname.'='.$cxs);
 		return view('cxbenzhou', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus, 'qudao'=>$qudaos]);
 	}
 
@@ -116,6 +116,7 @@ class CxController extends Controller
         $lists = DB::table('sales')->where($cxname,$tj,$cxs)
             ->whereMonth('date',$ddd)
             ->paginate(20);
+        $lists->withPath('/cxby?'.$cxname.'='.$cxs);
         return view('cxbenyue', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus, 'qudao'=>$qudaos]);
 
     }
