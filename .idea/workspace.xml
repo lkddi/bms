@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd0355cd-d7f5-483f-a3ab-6022dd44c1eb" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/views/cxbenyue.blade.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CxController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CxController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WeChatController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/WeChatController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Mendian.php" afterPath="$PROJECT_DIR$/app/Mendian.php" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" afterPath="$PROJECT_DIR$/config/filesystems.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cxbenzhou.blade.php" afterPath="$PROJECT_DIR$/resources/views/cxbenzhou.blade.php" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -99,7 +92,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cxbenzhou.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cxbenzhou.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/cxbenzhou.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="389">
@@ -132,6 +125,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -146,6 +149,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/CxController.php" />
         <option value="$PROJECT_DIR$/resources/views/cxbenyue.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cxbenzhou.blade.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -273,50 +277,6 @@
               <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
               <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="bootstrap" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="a.cn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="a.cn" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -354,12 +314,12 @@
       <option name="presentableId" value="Default" />
       <updated>1516774804655</updated>
       <workItem from="1516774807595" duration="395000" />
-      <workItem from="1516775223269" duration="9543000" />
+      <workItem from="1516775223269" duration="9970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9938000" />
+    <option name="totallyTimeSpent" value="10365000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="6" />
@@ -525,6 +485,14 @@
             <marker date="1516788587821" expanded="true" signature="2913:2926" ph="..." />
             <marker date="1516788587821" expanded="true" signature="3011:3027" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
