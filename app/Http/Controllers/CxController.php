@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Quyu;
 use App\Mendian;
 use App\Mode;
 use App\Sale;
+use App\Qudao;
 class CxController extends Controller
 {
     //
@@ -49,44 +52,88 @@ class CxController extends Controller
 
 	public function cxbenzhou(Request $request)
 	{
-		$mdname = $request->input('mdname');
-		$qyid = $request->input('qyid');
-		$type = $mdname ?? 1;
-		$mdnames = Mendian::all();
-		$quyus = Quyu::all();
-		$lists = Sale::where('mdname',$mdname)
+        $mdname = $request->input('mdname');
+        $quyuid = $request->input('qyid');
+        $qudaoid = $request->input('qdid');
+        $mdnames = Mendian::all();
+        $quyus = Quyu::all();
+        $qudaos = Qudao::all();
+        $tj = '=';
+        if ($mdname){
+            $cxname = 'mdname';
+            $cxs = $mdname;
+        }elseif ($quyuid){
+            $cxname = 'quyu_id';
+            $cxs = $quyuid;
+            $mds = Quyu::where('id',$quyuid)->first();
+            $mdname = $mds->qyname.'区域';
+        }elseif ($qudaoid){
+            $cxname = 'qudao_id';
+            $cxs = $qudaoid;
+            $mds = Qudao::where('id',$qudaoid)->first();
+            $mdname = $mds->qdname.'';
+        }else{
+            $cxname = 'id';
+            $cxs = 0;
+            $tj = '>';
+        }
+
+		$lists = Sale::where($cxname,$tj,$cxs)
 					->whereBetween('date',[date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"))),date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")))])
 					->paginate(20);
 
-		return view('cxbenzhou', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus]);
+		return view('cxbenzhou', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus, 'qudao'=>$qudaos]);
 	}
 
 	public function cxbenyue(Request $request)
 	{
-		$mdname = $request->input('mdname');
-		$qyid = $request->input('qyid');
-		$type = !$mdname ?? '1';
+        $mdname = $request->input('mdname');
+        $quyuid = $request->input('qyid');
+        $qudaoid = $request->input('qdid');
+        $mdnames = Mendian::all();
+        $quyus = Quyu::all();
+        $qudaos = Qudao::all();
+        $tj = '=';
+        if ($mdname){
+            $cxname = 'mdname';
+            $cxs = $mdname;
+        }elseif ($quyuid){
+            $cxname = 'quyu_id';
+            $cxs = $quyuid;
+            $mds = Quyu::where('id',$quyuid)->first();
+            $mdname = $mds->qyname.'区域';
+        }elseif ($qudaoid){
+            $cxname = 'qudao_id';
+            $cxs = $qudaoid;
+            $mds = Qudao::where('id',$qudaoid)->first();
+            $mdname = $mds->qdname.'';
+        }else{
+            $cxname = 'id';
+            $cxs = 0;
+            $tj = '>';
+        }
+        $ddd = date('m',time());
+        $lists = DB::table('sales')->where($cxname,$tj,$cxs)
+            ->whereMonth('date',$ddd)
+            ->paginate(20);
+        return view('cxbenyue', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus, 'qudao'=>$qudaos]);
 
-		$mdnames = Mendian::all();
-		$quyus = Quyu::all();
+    }
 
-		$ddd = date('m',time());
+    public function c()
+    {
+        $lists = Sale::all();
+        foreach ($lists as $list){
+           echo $list->mdname;
+           $mds = Mendian::where('mdname',$list->mdname)->first();
+           echo "=";
+           echo $mds->qudao_id;
+           echo "<br>";
+            $id = DB::table('sales')
+                ->where('id', $list->id)
+                ->update(['quyu_id'=>$mds->quyu_id, 'qudao_id'=>$mds->qudao_id]);
+        }
+    }
 
-		$lists = Sale::where($cxname,$mdname)
-					->whereMonth('date',$ddd)
-					->paginate(20);	
-		return view('cxbenyue', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus]);
-	}
-
-	public function c()
-	{
-		$md = Mendian::all()->cxqys();
-		// dd($md);
-		// print_r($dm->mdname);
-
-		foreach ($md as $flight) {
-		    echo $flight->mdname;
-		}
-	}
 
 }

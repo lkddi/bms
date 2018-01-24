@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>数据查询</title>
+        <title>本周数据查询</title>
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -24,16 +24,13 @@ height:38px;
 	<div class="row-fluid">
 		<div class="span12">
 				@if(empty($name))
-				<h3>门店销售查询系统(所有门店)</h3>
+				<h3>本周销售查询系统(所有门店)</h3>
 				@else
-				<h3>门店销售查询系统({{$name}})</h3>
+				<h3>本周销售查询系统({{$name}})</h3>
 				@endif
 
 <nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid"> 
-	<div class="navbar-header">
-		<a class="navbar-brand" href="#">选项</a>
-	</div>
+	<div class="container-fluid">
 	<div>
 		<ul class="nav navbar-nav">
 			<li class="dropdown">
@@ -42,12 +39,9 @@ height:38px;
 					<b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					
 					<li><a href="/cxby">本月</a></li>
-					
 				</ul>
 			</li>
-
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					区域 
@@ -55,11 +49,21 @@ height:38px;
 				</a>
 				<ul class="dropdown-menu">
 					@foreach ($quyus as $key => $quyu)
-					<li><a href="/quire?qyid={{$quyu->id}}">{{$quyu->name}}</a></li>
+					<li><a href="/cxbz?qyid={{$quyu->id}}">{{$quyu->qyname}}</a></li>
 					@endforeach
 				</ul>
 			</li>
-
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					渠道
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					@foreach ($qudao as $key => $qudaos)
+						<li><a href="/cxbz?qdid={{$qudaos->id}}">{{$qudaos->qdname}}</a></li>
+					@endforeach
+				</ul>
+			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					门店 
@@ -67,7 +71,7 @@ height:38px;
 				</a>
 				<ul class="dropdown-menu">
 					@foreach ($mdnames as $key => $mdlists)
-					<li><a href="/quire?mdname={{$mdlists->mdname}}">{{$mdlists->mdname}}</a></li>
+					<li><a href="/cxbz?mdname={{$mdlists->mdname}}">{{$mdlists->mdname}}</a></li>
 					@endforeach
 				</ul>
 			</li>
@@ -79,9 +83,7 @@ height:38px;
 					<thead>
 						<tr class="text-center" align="center">
 							<th>编号</th>
-							@if(empty($name))
 							<th>门店</th>
-							@endif
 							<th>型号</th>
 							<th>卖价</th>
 							<th>时间</th>
@@ -95,9 +97,7 @@ height:38px;
 							@foreach ($list as $key => $lists)
 							<tr class="text-center">
 							<td>{{$key + 1}}</td>
-							@if(empty($name))
 							<td>{{$lists->mdname}}</td>
-							@endif
 							<td>{{$lists->model}}</td>
 							<td>{{$lists->amount}}</td>
 							<td>{{$lists->date}}</td>
