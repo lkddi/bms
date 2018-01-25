@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Mendian;
 class MendianController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.admin:admin');
+    }
+
     public function index()
     {
         $qudaos = Mendian::all();

@@ -7,6 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Qudao;
 class QudaoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.admin:admin');
+    }
+
+
     public function index()
     {
         $qudaos = Qudao::all();

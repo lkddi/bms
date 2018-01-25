@@ -32,15 +32,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
 {
     $router->get('login', 'LoginController@showLoginForm')->name('admin.login');
-    $router->get('post', 'PostController@index')->name('admin.login');
-    $router->get('mendian', 'MendianController@index')->name('admin.login');
-    $router->get('quyu', 'QuyuController@index')->name('admin.login');
-    $router->get('qudao', 'QudaoController@index')->name('admin.login');
-    $router->get('model', 'ModelController@index')->name('admin.login');
-    $router->get('sale', 'SaleController@index')->name('admin.login');
-    $router->get('zhengce', 'ZhengceController@index')->name('admin.login');
     $router->post('login', 'LoginController@login');
-    $router->post('logout', 'LoginController@logout');
+    $router->any('logout', 'LoginController@logout');
 
     $router->get('dash', 'DashboardController@index');
+    $router->get('post', 'PostController@index');
+    $router->get('mendian', 'MendianController@index');
+    $router->get('quyu', 'QuyuController@index');
+    $router->get('qudao', 'QudaoController@index');
+    $router->get('model', 'ModelController@index');
+    $router->get('zhengce', 'ZhengceController@index');
+    $router->get('sale', 'SaleController@index');
 });

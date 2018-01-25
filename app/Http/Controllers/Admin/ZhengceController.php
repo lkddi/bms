@@ -7,8 +7,14 @@ use App\Http\Controllers\Controller;
 
 class ZhengceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.admin:admin');
+    }
+
+
     public function index()
     {
-        return view('admin.sale.index');
+        return view('admin.zhengce.index');
     }
 }
