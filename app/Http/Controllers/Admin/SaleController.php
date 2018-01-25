@@ -18,8 +18,8 @@ class SaleController extends Controller
 
     public function index()
     {
-//        $sale = Sale::all();
-        $sale = DB::table('sales')->where('id', '>', 0)->paginate(20);
+        $sale = Sale::where('id', '>', 0)->paginate(20);
+//        $sale = DB::table('sales')->where('id', '>', 0)->paginate(20);
         return view('admin.sale.index',['sales' =>$sale]);
     }
 }
