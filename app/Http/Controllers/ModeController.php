@@ -34,7 +34,7 @@ class ModeController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.mode.add');
     }
 
     /**
@@ -45,7 +45,29 @@ class ModeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'model' => 'required',
+            'jmodel' =>'required',
+            'price' =>'required|integer',
+            'state' =>'required|integer',
+        ], [
+            'required' => ':attribute 为必填项',
+            'integer' =>':attribute 必须为数字',
+        ],[
+            'model'=>'型号',
+            'jmodel'=>'型号简称',
+            'price'=>'零售价',
+            'state'=>'状态',
+        ]);
+        $mode = new Mode;
+        $mode->model = $request->model;
+        $mode->jmodel = $request->jmodel;
+        $mode->price = $request->price;
+        $mode->state = $request->state;
+//        dd($mode);
+        $mode->save();
+        return redirect()
+            ->route('mode.index');
     }
 
     /**
@@ -67,7 +89,7 @@ class ModeController extends Controller
      */
     public function edit(mode $mode)
     {
-        //
+        return view('home.mode.edit',['mode' =>$mode]);
     }
 
     /**
@@ -79,7 +101,14 @@ class ModeController extends Controller
      */
     public function update(Request $request, mode $mode)
     {
-        //
+        $mode->model = $request->model;
+        $mode->jmodel = $request->jmodel;
+        $mode->price = $request->price;
+        $mode->state = $request->state;
+//        dd($mode);
+        $mode->save();
+        return redirect()
+            ->route('mode.index');
     }
 
     /**
@@ -90,6 +119,8 @@ class ModeController extends Controller
      */
     public function destroy(mode $mode)
     {
-        //
+        $mode->delete();
+        return redirect()
+            ->route('mode.index');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Qudao;
+use App\Quyu;
 use Illuminate\Http\Request;
 
 class QudaoController extends Controller
@@ -36,7 +37,9 @@ class QudaoController extends Controller
      */
     public function create()
     {
-        //
+        $quyus = Quyu::all();
+        return view('home.qudao.add',['quyus'=>$quyus]);
+
     }
 
     /**
@@ -47,7 +50,23 @@ class QudaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'qdname' => 'required',
+            'quyu_id' =>'required|integer',
+        ], [
+            'required' => ':attribute 为必填项',
+            'integer' =>':attribute 必须为数字',
+        ],[
+            'qdname'=>'渠道名称',
+            'quyu_id'=>'区域',
+        ]);
+        $qudao = new Qudao;
+        $qudao->qdname = $request->qdname;
+        $qudao->quyu_id = $request->quyu_id;
+//        dd($mode);
+        $qudao->save();
+        return redirect()
+            ->route('qudao.index');
     }
 
     /**
@@ -69,7 +88,9 @@ class QudaoController extends Controller
      */
     public function edit(qudao $qudao)
     {
-        //
+        $quyus = Quyu::all();
+        return view('home.qudao.edit',['qudao'=>$qudao, 'quyus'=>$quyus]);
+
     }
 
     /**
@@ -81,7 +102,12 @@ class QudaoController extends Controller
      */
     public function update(Request $request, qudao $qudao)
     {
-        //
+        $qudao->qdname = $request->qdname;
+        $qudao->quyu_id = $request->quyu_id;
+//        dd($mendian);
+        $qudao->save();
+        return redirect()
+            ->route('qudao.index');
     }
 
     /**

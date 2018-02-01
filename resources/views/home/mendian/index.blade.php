@@ -5,7 +5,9 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">门店列表</div>
+                    <div class="panel-heading"><a href="/mendian/create" class="btn btn-success btn-md">
+                            <i class="fa fa-plus-circle"></i> 新增门店
+                        </a></div>
 
                     <div class="panel-body">
                         @if (session('status'))

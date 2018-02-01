@@ -42,7 +42,10 @@ class MendianController extends Controller
      */
     public function create()
     {
-        //
+
+        $qudaos =Qudao::all();
+        $quyus = Quyu::all();
+        return view('home.mendian.add',['qudaos'=>$qudaos, 'quyus'=>$quyus]);
     }
 
     /**
@@ -53,7 +56,29 @@ class MendianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'mdname' => 'required',
+            'mdpy' =>'mdpy',
+            'quyu_id' =>'required|integer',
+            'qudao_id' =>'required|integer',
+        ], [
+            'required' => ':attribute 为必填项',
+            'integer' =>':attribute 必须为数字',
+        ],[
+            'mdname'=>'门店名称',
+            'mdpy'=>'门店简称',
+            'quyu_id'=>'区域id',
+            'qudao_id'=>'渠道id',
+        ]);
+        $mendian = new Mendian;
+        $mendian->mdname = $request->mdname;
+        $mendian->mdpy = $request->mdpy;
+        $mendian->quyu_id = $request->quyu_id;
+        $mendian->qudao_id = $request->qudao_id;
+//        dd($mode);
+        $mendian->save();
+        return redirect()
+            ->route('mendian.index');
     }
 
     /**

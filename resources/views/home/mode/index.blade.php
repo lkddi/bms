@@ -5,7 +5,12 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">产品管理</div>
+                    <div class="panel-heading">
+                        <a href="/mode/create" class="btn btn-success btn-md">
+                                <i class="fa fa-plus-circle"></i> 新增产品
+                            </a>
+                    </div>
+
 
                     <div class="panel-body">
                         @if (session('status'))
