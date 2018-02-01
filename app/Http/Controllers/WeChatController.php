@@ -37,16 +37,19 @@ class WeChatController extends Controller
             function($message){
                switch ($message['MsgType']) {
 			        case 'event':
-			            return '收到事件消息';
+			            return '欢迎关注北京金松内蒙销售部公众账号！';
 			            break;
 			        case 'text':
 			        	if ($message['Content'] == '删除') {
-			        		$s = $this->del(0);
+			        		$s = $this->del(0, $message);
 			        		return $s;
 			        	}
+                        if ($message['Content'] == 'user') {
+                            return $message['FromUserName'];
+                        }
 						$hello = explode(' ',$message['Content']); 
 						if ($hello['0']=='查询') {
-							$url ='http://wx.ay.lc/quire?mdname='.$hello['1'].'&x='.$hello['2'];
+							$url ='http://wx.ay.lc/';
 							$items = [new NewsItem([
 							        'title'       => $hello['1'].'本周数据',
 							        'description' => '...',
@@ -55,19 +58,19 @@ class WeChatController extends Controller
 							return new News($items);
 
 						}elseif ($hello['0']=='删除') {
-							$s = $this->del($hello['1']);
+							$s = $this->del($hello['1'], $message);
 			        		return $s;
 						}
 
 						if (count($hello) >= 3) {
-							$a = $this->add($hello,'text');
-						}
-						return $a;
+							$a = $this->addtext($hello,$message);
+                            return $a;
+                        }
 			            // return $message['Content'].'收到文字消息'.$abc;
 			            break;
 			        case 'image':
-			        	$content = $message['PicUrl'];
-			        	$a = $this->add($message['PicUrl'],'image');
+//			        	$content = $message['PicUrl'];
+			        	$a = $this->addphoto($message);
 
 			            return $a;
 			            break;
@@ -93,65 +96,85 @@ class WeChatController extends Controller
         return $app->server->serve();
     }
 
-    public function add($data,$type = 'image')
+    public function addphoto($data)
     {
     	// $data  = array();
     	// $data['PicUrl'] ='dddddddddddddd';
-    	//写数据库，如果图片下载图片。   然后修改  内容 并修改图片 
-	    $sales = DB::table('sales')->where('state',0)->first();
-    	if ($type == 'image') {
+    	//写数据库，如果图片下载图片。   然后修改  内容 并修改图片
+	    $sales = Sale::where(['state'=>0,  'userid'=> $data['FromUserName'],])->first();
+        //查询图片md5 判断重复
+        $md5 = md5_file($data['PicUrl']);
+        $md5old = Sale::where('md5', $md5)->first();
+        if ($md5old){
+            if ($md5old->state){
+                return "该图片已经上传过ID：".$md5old->id.'('.$md5old->mdname.$md5old->model.':'.$md5old->amount.')时间'.$md5old->date;
+            }else{
+                return "图片保存ok，请回复门店信息及型号价格，请用空格分开！";
+            }
+        }
+        if (!$sales) {
+            $id = DB::table('sales')->insertGetId(
+                ['image' => $data['PicUrl'], 'md5'=>$md5, 'date'=>date('y-m-d',time()), 'userid'=>$data['FromUserName']]
+            );
+            if ($id) {
+                return '图片保存ok，请回复门店信息及型号价格，请用空格分开！';
+            }else{
+                return '图片保存失败，请重新发送！';
+            }
 
-	    	if (!$sales) {
-	    		
-	    		$id = DB::table('sales')->insertGetId(
-				    ['image' => $data,'date'=>date('y-m-d',time())]
-				);
-				if ($id) {
-					return '图片保存ok，请回复门店信息及型号价格，请用空格分开！';
-				}else{
-					return '图片保存失败，请重新发送！';
-				}
-	    		
-	    	}else{
-	    		return '上一张图片还未设置门店信息，如重新发送请先回复 删除';
-	    	}
+        }else{
+            return '上一张图片还未设置门店信息，如重新发送请先回复 删除';
+        }
 
-    	}else{
-    		//如果type不是图片 对文字进行处理
-    		if (!$sales) {
-    			return '请先发给我图片！';
-    		}else{
-    			//下载图片到本地，储存到想要目录并改名
-    			//url 远程图片地址
-    			//file 文件名称
-    			//path 保存路径
-    			$file = $data['1']."_".date('Y-m-d-his',time()).".jpg";
-    			$path = $data['0'];
-    			$url = $sales->image;
-                $mendianid = Mendian::where('mdname',$data['0'])->first();
-                if (!$mendianid){
-                    return "门店名称错误";
-                }
-                $quyu_id = $mendianid->quyu_id;
-                $qudao_id = $mendianid->qudao_id;
-                $newurl = $this->down($url,$file,$path);
-
-    			if ($newurl != false) {
-    				$luanjia = $data['3'] ?? 0;
-
-	     			$id = DB::table('sales')
-                        ->where('id', $sales->id)
-					    ->update(['image'=>$newurl,'mdname' => $data['0'], 'quyu_id'=>$quyu_id, 'qudao_id'=>$qudao_id,'model' => $data['1'],'amount' => $data['2'],'state' => '1' ,'arbitrary' => $luanjia]);
-					if ($id) {
-						return '数据添加成功,ID:'.$sales->id.'-'.$data['0'] .'-'.$data['1'];
-					}else{
-						return '门店信息增加失败，从新发送门店信息！';
-					}
-	    		} 				
-    		}
-    	}
 	}
+    public function addtext($data, $message)
+    {
+        $sales = Sale::where(['state'=>0, 'userid'=> $message['FromUserName'],])->first();
+        if ($sales){
+            //下载图片到本地，储存到想要目录并改名
+            //url 远程图片地址
+            //file 文件名称
+            //path 保存路径
+            $file = $data['1']."_".date('Y-m-d-his',time()).".jpg";
+            $path = $data['0'];
+            $url = $sales->image;
+            $mendianid = Mendian::where('mdname',$data['0'])->first();
+            if (!$mendianid){
+                return "该门店不存在，请核对或添加新门店！";
+            }
+            $model = Mode::where('jmodel',$data['1'])->first();
+            if (!$model){
+                return "该型号不存在，请核对或联系管理添加！";
+            }
+            if (!is_numeric($data['2'])) {
+                return '价格错误，请检查输入信息！';
+            }
+            if (!is_numeric($data['3'])) {
+                return '状态信息错误，请检查输入信息！';
+            }
+            $quyu_id = $mendianid->quyu_id;
+            $qudao_id = $mendianid->qudao_id;
+            $price = $model->price;
+            $newurl = $this->down($url,$file,$path);
 
+            if ($newurl != false) {
+                $luanjia = $data['3'] ?? 0;
+
+                $id = DB::table('sales')
+                    ->where('id', $sales->id)
+                    ->update(['image'=>$newurl,'mdname' => $data['0'], 'quyu_id'=>$quyu_id, 'qudao_id'=>$qudao_id,'model' => $data['1'],'amount' => $data['2'],'state' => '1' ,'arbitrary' => $luanjia, 'price'=>$price,]);
+                if ($id) {
+                    return '数据添加成功,ID:'.$sales->id.'-'.$data['0'] .'-'.$data['1'];
+                }else{
+                    return '门店信息增加失败，从新发送门店信息！';
+                }
+            }else{
+                return '图片下载失败';
+            }
+        }else{
+            return '请先发票照片！';
+        }
+    }
     public function down($url,$file,$path)
     {
 		$y = date('m',time());
@@ -192,43 +215,9 @@ class WeChatController extends Controller
 
 	}
 
-	//	查询数据
-	public function quire(Request $request)
-	{
-		$mdname = $request->input('mdname');
-		$qyid = $request->input('qyid');
-		$x = $request->input('x');
-		// print_r($mdname);
-		$type = $mdname ?? 1;
-		$mdnames = Mendian::all();
-		$quyus = Quyu::all();
-		if ($type) {
-			$lists = Sale::whereBetween('date',[date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"))),date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")))])
-			->paginate(20);
-
-		}else{
-
-			if ($x =='本周') {
-				// echo date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"))),"\n";  
-	   //  		echo date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y"))),"\n";
-				$lists = Sale::where('mdname',$mdname)
-							->whereBetween('date',[date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"))),date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")))])
-							->paginate(20);
-	    		
-			}elseif ($x =='本月') {
-				$ddd = date('m',time());
-
-				$lists = Sale::where('mdname',$mdname)
-							->whereMonth('date',$ddd)
-							->paginate(20);			
-			}
-		}
 
 
-		return view('quire', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus]);
-	}
-
-    public function del($id)
+    public function del($id, $data)
     {
     	if ($id >0) {
     	    $url = DB::table('sales')->where('id','=',$id)->first();

@@ -32,7 +32,10 @@
                                     <td>{{$lists->mdpy}}</td>
                                     <td>{{$lists->quyu_id}}</td>
                                     <td>{{$lists->qudao_id}}</td>
-                                    <td></td>
+                                    <td><a href="/admin/mendian/{{ $lists->id }}/edit" class="btn btn-xs btn-info">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                        </td>
                                     <td></td>
                                 </tr>
                             @endforeach

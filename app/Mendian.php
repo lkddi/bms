@@ -3,16 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Quyu;
+
 class Mendian extends Model
 {
-	//protected $hidden = ['id', 'mdname', 'mdpy', 'quyu_id', 'dudao_id'];
-
     //
-    public function cxqys()
+    public function quyu()
     {
-    	 // return $this->hasOne('App\Quyu');
-    	 return $this->hasOne('App\Quyu', 'id', 'quyu_id');
-
+        return $this->hasOne(Quyu::class,'id','quyu_id');
     }
 }

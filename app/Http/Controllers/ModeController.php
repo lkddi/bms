@@ -1,13 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-
-use App\Qudao;
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Mode;
 
-class QudaoController extends Controller
+class ModeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +23,8 @@ class QudaoController extends Controller
      */
     public function index()
     {
-        $qudaos = Qudao::all();
-        return view('admin.qudao.index',['qudao'=>$qudaos]);
+        $modes = Mode::all();
+        return view('home.mode.index', ['modes'=>$modes]);
     }
 
     /**
@@ -43,10 +51,10 @@ class QudaoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Qudao  $qudao
+     * @param  \App\mode  $mode
      * @return \Illuminate\Http\Response
      */
-    public function show(Qudao $qudao)
+    public function show(mode $mode)
     {
         //
     }
@@ -54,10 +62,10 @@ class QudaoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Qudao  $qudao
+     * @param  \App\mode  $mode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Qudao $qudao)
+    public function edit(mode $mode)
     {
         //
     }
@@ -66,10 +74,10 @@ class QudaoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Qudao  $qudao
+     * @param  \App\mode  $mode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Qudao $qudao)
+    public function update(Request $request, mode $mode)
     {
         //
     }
@@ -77,10 +85,10 @@ class QudaoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Qudao  $qudao
+     * @param  \App\mode  $mode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Qudao $qudao)
+    public function destroy(mode $mode)
     {
         //
     }

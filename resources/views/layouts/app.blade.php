@@ -9,9 +9,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <script src="js/jquery.min.js"></script>
 
+    <script type="text/javascript" src="js/picbox.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .table th, .table td {
+            text-align: center;
+            /*height:38px;*/
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -27,18 +37,50 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <!-- Branding Image -->
+                @guest  <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{config('app.name')}}
                     </a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
 
+                    @else
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            零售控价系统
+                        </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar --><ul class="nav navbar-nav">
+                        @if(auth()->user()->gid=== 8)
+                        <li @if (Request::is('/sale*')) class="active" @endif>
+                            <a href="/sale">所有数据</a>
+                        </li>
+                        @endif
+                            <li @if (Request::is('/cxby*')) class="active" @endif>
+                            <a href="/cxby">本月数据</a>
+                        </li>
+                        <li @if (Request::is('/cxbz*')) class="active" @endif>
+                            <a href="/cxbz">本周数据</a>
+                        </li>
+                        <li @if (Request::is('/zhengce*')) class="active" @endif>
+                            <a href="/zhengce">活动维护</a>
+                        </li>
+                        <li @if (Request::is('/mode*')) class="active" @endif>
+                            <a href="/mode">产品维护</a>
+                        </li>
+                        <li @if (Request::is('/mendian*')) class="active" @endif>
+                            <a href="/mendian">门店管理</a>
+                        </li>
+                        <li @if (Request::is('/qudao*')) class="active" @endif>
+                            <a href="/qudao">渠道管理</a>
+                        </li>
+                        <li @if (Request::is('/cxbz*')) class="active" @endif>
+                            <a href="/cxbz">个人设置</a>
+                        </li>
+
+                    </ul>
+                    @endguest
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
