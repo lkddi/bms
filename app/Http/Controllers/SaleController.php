@@ -8,6 +8,7 @@ use App\Mendian;
 use App\Quyu;
 use App\Qudao;
 use Illuminate\Support\Facades\DB;
+
 class SaleController extends Controller
 {
     /**
@@ -54,6 +55,9 @@ class SaleController extends Controller
         }
         $ddd = date('m',time());
         $lists = DB::table('sales')->where($cxname,$tj,$cxs)
+            ->where(function($query){
+            $query->where('state', 1);
+        })
 //            ->whereMonth('date',$ddd)
             ->orderBy('date', 'desc')
             ->paginate(20);

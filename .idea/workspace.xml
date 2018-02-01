@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd0355cd-d7f5-483f-a3ab-6022dd44c1eb" name="Default" comment="修改后台 部分文件">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModeController.php" />
-      <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MendianController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MendianController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ModelController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/QudaoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/QudaoController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuyuController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuyuController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SaleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SaleController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CxController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CxController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MendianController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WeChatController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/WeChatController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" />
-      <change beforePath="$PROJECT_DIR$/app/Mendian.php" afterPath="$PROJECT_DIR$/app/Mendian.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/mendian/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/mendian/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/sale/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/sale/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cxbenyue.blade.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cxbenzhou.blade.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,21 +57,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="19" />
+            <state relative-caret-position="195">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SaleController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SaleController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SaleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="137" column="9" lean-forward="false" selection-start-line="137" selection-start-column="9" selection-end-line="137" selection-end-column="9" />
+            <state relative-caret-position="298">
+              <caret line="59" column="10" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="59" selection-end-column="10" />
               <folding>
                 <element signature="e#40#53#0#PHP" expanded="true" />
               </folding>
@@ -103,11 +82,11 @@
       <file leaf-file-name="CxController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CxController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="953">
-              <caret line="141" column="3" lean-forward="false" selection-start-line="141" selection-start-column="3" selection-end-line="144" selection-end-column="21" />
+            <state relative-caret-position="168">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#39#78#0#PHP" expanded="true" />
-                <marker date="1517496522677" expanded="true" signature="6172:6364" ph="..." />
+                <marker date="1517497278359" expanded="true" signature="4997:5189" ph="..." />
               </folding>
             </state>
           </provider>
@@ -116,8 +95,8 @@
       <file leaf-file-name="WeChatController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeChatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="235" column="98" lean-forward="false" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="98" />
+            <state relative-caret-position="309">
+              <caret line="131" column="36" lean-forward="false" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="36" />
               <folding>
                 <element signature="e#39#78#0#PHP" expanded="true" />
               </folding>
@@ -175,7 +154,6 @@
         <option value="$PROJECT_DIR$/resources/views/cxbenzhou.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/resources/views/home/chaxun/cxall.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/home/mendian/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MendianController.php" />
         <option value="$PROJECT_DIR$/resources/views/home/mendian/index.blade.php" />
@@ -189,8 +167,9 @@
         <option value="$PROJECT_DIR$/resources/views/home/chaxun/cxbenyue.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home/chaxun/cxbenzhou.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/WeChatController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CxController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SaleController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CxController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -630,12 +609,12 @@
       <workItem from="1516855426327" duration="6405000" />
       <workItem from="1517187993382" duration="823000" />
       <workItem from="1517190438114" duration="296000" />
-      <workItem from="1517282855557" duration="33182000" />
+      <workItem from="1517282855557" duration="33849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65560000" />
+    <option name="totallyTimeSpent" value="66227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="6" />
@@ -686,8 +665,13 @@
           <line>4</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/SaleController.php</url>
+          <line>76</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1116,14 +1100,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home/chaxun/cxbenzhou.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1315,32 +1291,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeChatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="235" column="98" lean-forward="false" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="98" />
+        <state relative-caret-position="309">
+          <caret line="131" column="36" lean-forward="false" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="36" />
           <folding>
             <element signature="e#39#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CxController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="953">
-          <caret line="141" column="3" lean-forward="false" selection-start-line="141" selection-start-column="3" selection-end-line="144" selection-end-column="21" />
-          <folding>
-            <element signature="e#39#78#0#PHP" expanded="true" />
-            <marker date="1517496522677" expanded="true" signature="6172:6364" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SaleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="137" column="9" lean-forward="false" selection-start-line="137" selection-start-column="9" selection-end-line="137" selection-end-column="9" />
+        <state relative-caret-position="298">
+          <caret line="59" column="10" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="59" selection-end-column="10" />
           <folding>
             <element signature="e#40#53#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#78#0#PHP" expanded="true" />
+            <marker date="1517497278359" expanded="true" signature="4997:5189" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

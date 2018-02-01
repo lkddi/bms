@@ -20,7 +20,6 @@ Route::any('/c', 'WeChatController@c');
 Route::any('/cx', 'CxController@c');
 Route::any('/cxbz', 'CxController@cxbenzhou');
 Route::any('/cxby', 'CxController@cxbenyue');
-Route::any('/cxall', 'CxController@cxall');
 Route::get('/quire', 'WeChatController@quire');
 Route::any('/mendian', 'MendianController@index');
 

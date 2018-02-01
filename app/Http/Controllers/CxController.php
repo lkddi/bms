@@ -20,47 +20,8 @@ class CxController extends Controller
     {
         $this->middleware('auth');
     }
-    //
-    	//	查询所有数据
-	public function cxall(Request $request)
-	{
-        $mdname = $request->input('mdname');
-        $quyuid = $request->input('quyu_id');
-        $qudaoid = $request->input('qudao_id');
-        $mdnames = Mendian::all();
-        $quyus = Quyu::all();
-        $qudaos = Qudao::all();
-        $tj = '=';
-        if ($mdname){
-            $cxname = 'mdname';
-            $cxs = $mdname;
-        }elseif ($quyuid){
-            $cxname = 'quyu_id';
-            $cxs = $quyuid;
-            $mds = Quyu::where('id',$quyuid)->first();
-            $mdname = $mds->qyname.'区域';
-        }elseif ($qudaoid){
-            $cxname = 'qudao_id';
-            $cxs = $qudaoid;
-            $mds = Qudao::where('id',$qudaoid)->first();
-            $mdname = $mds->qdname.'';
-        }else{
-            $cxname = 'id';
-            $cxs = 0;
-            $tj = '>';
-        }
-        $ddd = date('m',time());
-        $lists = DB::table('sales')->where($cxname,$tj,$cxs)
-//            ->whereMonth('date',$ddd)
-            ->orderBy('date', 'desc')
-            ->paginate(20);
-        $lists->withPath('/cxby?'.$cxname.'='.$cxs);
-        return view('home.chaxun.cxall', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus, 'qudao'=>$qudaos]);
 
 
-		
-		return view('quire', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus]);
-	}
 
 
 	public function cxbenzhou(Request $request)
@@ -92,6 +53,9 @@ class CxController extends Controller
         }
 
 		$lists = Sale::where($cxname,$tj,$cxs)
+            ->where(function($query){
+                $query->where('state', 1);
+            })
 					->whereBetween('date',[date("Y-m-d H:i:s",mktime(0, 0 , 0,date("m"),date("d")-date("w")+1,date("Y"))),date("Y-m-d H:i:s",mktime(23,59,59,date("m"),date("d")-date("w")+7,date("Y")))])
 					->paginate(20);
         $lists->withPath('/cxbz?'.$cxname.'='.$cxs);
@@ -127,6 +91,9 @@ class CxController extends Controller
         }
         $ddd = date('m',time());
         $lists = DB::table('sales')->where($cxname,$tj,$cxs)
+            ->where(function($query){
+                $query->where('state', 1);
+            })
             ->whereMonth('date',$ddd)
             ->paginate(20);
         $lists->withPath('/cxby?'.$cxname.'='.$cxs);
