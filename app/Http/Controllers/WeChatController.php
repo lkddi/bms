@@ -139,6 +139,11 @@ class WeChatController extends Controller
             $path = $data['0'];
             $url = $sales->image;
             $mendianid = Mendian::where('mdname',$data['0'])->first();
+            if (empty($data['3'])){
+                $luanjia = 0;
+            }else{
+                $luanjia = $data['3'];
+            }
             if (!$mendianid){
                 return "该门店不存在，请核对或添加新门店！";
             }
@@ -149,20 +154,15 @@ class WeChatController extends Controller
             if (!is_numeric($data['2'])) {
                 return '价格错误，请检查输入信息！';
             }
-            if (!is_numeric($data['3'])) {
-                return '状态信息错误，请检查输入信息！';
-            }
+
             $quyu_id = $mendianid->quyu_id;
             $qudao_id = $mendianid->qudao_id;
             $price = $model->price;
             $newurl = $this->down($url,$file,$path);
-
             if ($newurl != false) {
-                $luanjia = $data['3'] ?? 0;
-
                 $id = DB::table('sales')
                     ->where('id', $sales->id)
-                    ->update(['image'=>$newurl,'mdname' => $data['0'], 'quyu_id'=>$quyu_id, 'qudao_id'=>$qudao_id,'model' => $data['1'],'amount' => $data['2'],'state' => '1' ,'arbitrary' => $luanjia, 'price'=>$price,]);
+                    ->update(['image'=>$newurl,'mdname' => $data['0'], 'quyu_id'=>$quyu_id, 'qudao_id'=>$qudao_id,'model' => $data['1'],'amount' => $data['2'],'state' => 1 ,'arbitrary' => $luanjia, 'price'=>$price,]);
                 if ($id) {
                     return '数据添加成功,ID:'.$sales->id.'-'.$data['0'] .'-'.$data['1'];
                 }else{
@@ -196,17 +196,22 @@ class WeChatController extends Controller
 		$file = $paths.$file;
     	$client = new Client(['verify' => false]);  //忽略SSL错误
 		$response = $client->get($url, ['save_to' => public_path($file)]);  //保存远程url到文件
-		return $file;
+        if ($response){
+            return $file;
+        }
+		return flase;
     }
 	public function c()
 	{
-		$ccc = 'aaaa';
-		$ddd = $ccc !='' ? 'aaaa' :'bbbb';
-		$neri = '同利文化路 Q9H2F 2298';
-        $hello = ['同利文化路', 'Q9H2F', '2298'];
-        $a = $this->add($hello,'text');
+//		$ccc = 'aaaa';
+//		$ddd = $ccc !='' ? 'aaaa' :'bbbb';
+//		$neri = '同利文化路 Q9H2F 2298';
+        $hello = ['苏宁广场', 'Q57231', '1547'];
+        $mes = ['FromUserName'=>'o4wryw3Z20OfW3dWwDfbMTiO1Uic'];
+//https://mp.weixin.qq.com/cgi-bin/singlesendpage?tofakeid=o4wryw3Z20OfW3dWwDfbMTiO1Uic&t=message/send&action=index&quickReplyId=600584629&token=1226985836&lang=zh_CN
+//        $a = $this->addtext($hello,$mes);
 
-		echo $a;
+//		echo $a;
 		// $qys =  Sale::where('state',0)->first();
 		//   print_r($qys->id);
 		//  foreach ($qys as $flight) {

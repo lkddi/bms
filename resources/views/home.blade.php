@@ -13,6 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                        <a href="/sale/export" class="btn btn-success btn-md">
+                            <i class="fa fa-plus-circle"></i> 导出数据
+                        </a>
                     操作请点击上面导航，如有不懂请联系 董冬明!
                 </div>
             </div>

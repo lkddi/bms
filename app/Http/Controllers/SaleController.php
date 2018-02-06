@@ -8,7 +8,8 @@ use App\Mendian;
 use App\Quyu;
 use App\Qudao;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
+use Excel;
 class SaleController extends Controller
 {
     /**
@@ -55,11 +56,11 @@ class SaleController extends Controller
         }
         $ddd = date('m',time());
         $lists = DB::table('sales')->where($cxname,$tj,$cxs)
-            ->where(function($query){
-            $query->where('state', 1);
-        })
+//            ->where(function($query){
+//            $query->where('state', 1);
+//        })
 //            ->whereMonth('date',$ddd)
-            ->orderBy('date', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate(20);
         $lists->withPath('/sale?'.$cxname.'='.$cxs);
         return view('home.sale.index', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus, 'qudao'=>$qudaos]);
@@ -143,5 +144,28 @@ class SaleController extends Controller
         $sale->delete();
         return redirect()
             ->route('sale.index');
+    }
+    public function export()
+    {
+        $cellData[]= ['日期','门店','型号','卖价'];
+        $lists = Sale::all();
+        foreach ($lists as $list)
+        {
+            $cellData[] = [$list->date,$list->mdname,$list->model,$list->amount];
+        }
+//        dd($cellData);
+//        $cellData = [
+//            ['学号','姓名','成绩'],
+//            ['10001','AAAAA','99'],
+//            ['10002','BBBBB','92'],
+//            ['10003','CCCCC','95'],
+//            ['10004','DDDDD','89'],
+//            ['10005','EEEEE','96'],
+//        ];
+        Excel::create('销售数据',function($excel) use ($cellData){
+            $excel->sheet('明细', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
     }
 }

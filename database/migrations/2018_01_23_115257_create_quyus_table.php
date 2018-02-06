@@ -16,7 +16,9 @@ class CreateQuyusTable extends Migration
         Schema::create('quyus', function (Blueprint $table) {
             $table->increments('id')->comment('区域ID');
             $table->string('qyname')->comment('区域名称');
-            $table->unique('id');  
+            $table->unique('id');
+            $table->timestamps();
+
         });
     }
 

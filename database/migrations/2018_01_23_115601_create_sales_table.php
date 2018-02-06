@@ -26,6 +26,7 @@ class CreateSalesTable extends Migration
             $table->date('date')->comment('销售日期');
             $table->tinyInteger('arbitrary')->default('0')->comment('是否乱价 乱价1');
             $table->tinyInteger('state')->default('0')->comment('是否完成');
+            $table->timestamps();
         });
     }
 

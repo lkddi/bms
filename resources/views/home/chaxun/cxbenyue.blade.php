@@ -10,7 +10,8 @@
                             本月销售查询系统(所有门店)
                         @else
                             本月销售查询系统---({{$name}})
-                        @endif</div>
+                        @endif
+                            ---共{{$list->total()}}条数据</div>
 
                     <div class="panel-body">
                         @if (session('status'))

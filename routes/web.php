@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::any('/wechat', 'WeChatController@serve');
-Route::any('/a', 'WeChatController@down');
+Route::any('/export', 'SaleController@export');
 Route::any('/c', 'WeChatController@c');
 Route::any('/cx', 'CxController@c');
 Route::any('/cxbz', 'CxController@cxbenzhou');

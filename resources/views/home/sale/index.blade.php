@@ -10,7 +10,9 @@
                             本月销售查询系统(所有门店)
                         @else
                             本月销售查询系统---({{$name}})
-                        @endif</div>
+                        @endif
+                            ---共{{$list->total()}}条数据
+                    </div>
 
                     <div class="panel-body">
                         @if (session('status'))
@@ -32,7 +34,7 @@
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     @foreach ($quyus as $key => $quyu)
-                                                        <li><a href="/cxby?quyu_id={{$quyu->id}}">{{$quyu->qyname}}</a></li>
+                                                        <li><a href="/sale?quyu_id={{$quyu->id}}">{{$quyu->qyname}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
@@ -43,7 +45,7 @@
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     @foreach ($qudao as $key => $qudaos)
-                                                        <li><a href="/cxby?qudao_id={{$qudaos->id}}">{{$qudaos->qdname}}</a></li>
+                                                        <li><a href="/sale?qudao_id={{$qudaos->id}}">{{$qudaos->qdname}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
@@ -54,7 +56,7 @@
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     @foreach ($mdnames as $key => $mdlists)
-                                                        <li><a href="/cxby?mdname={{$mdlists->mdname}}">{{$mdlists->mdname}}</a></li>
+                                                        <li><a href="/sale?mdname={{$mdlists->mdname}}">{{$mdlists->mdname}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>

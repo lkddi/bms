@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Zhengce;
 class ZhengceController extends Controller
 {
     /**
@@ -22,7 +22,8 @@ class ZhengceController extends Controller
      */
     public function index()
     {
-        return view('home.zhengce.index');
+        $zhengces = Zhengce::all();
+        return view('home.zhengce.index', ['zhengces'=>$zhengces]);
     }
 
     /**
