@@ -62,6 +62,10 @@ class CxController extends Controller
 		return view('home.chaxun.cxbenzhou', ['list' => $lists,'name' =>$mdname,'mdnames' => $mdnames, 'quyus'=>$quyus, 'qudao'=>$qudaos]);
 	}
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function cxbenyue(Request $request)
 	{
         $mdname = $request->input('mdname');

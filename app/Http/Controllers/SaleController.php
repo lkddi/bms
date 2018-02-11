@@ -153,7 +153,6 @@ class SaleController extends Controller
         {
             $cellData[] = [$list->date,$list->mdname,$list->model,$list->amount];
         }
-//        dd($cellData);
 //        $cellData = [
 //            ['学号','姓名','成绩'],
 //            ['10001','AAAAA','99'],
