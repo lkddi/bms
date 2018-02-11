@@ -17,6 +17,7 @@ class CreateQudaosTable extends Migration
             $table->increments('id');
             $table->string('qdname')->comment('渠道名称');
             $table->integer('quyu_id')->default('0')->comment('区域id');
+            $table->timestamp('created_at')->nullable();
             $table->timestamps();
 
         });

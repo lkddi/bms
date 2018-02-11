@@ -17,6 +17,7 @@ class CreateQuyusTable extends Migration
             $table->increments('id')->comment('区域ID');
             $table->string('qyname')->comment('区域名称');
             $table->unique('id');
+            $table->timestamp('created_at')->nullable();
             $table->timestamps();
 
         });

@@ -19,6 +19,7 @@ class CreateModesTable extends Migration
             $table->string('jmodel')->comment('型号简称');
             $table->integer('price')->comment('零售价');
             $table->tinyInteger('state')->default('0')->comment('状态 下线1 正常0');
+            $table->timestamp('created_at')->nullable();
             $table->timestamps();
             $table->unique('id'); 
         });

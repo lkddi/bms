@@ -19,6 +19,7 @@ class CreateMendiansTable extends Migration
             $table->string('mdpy')->default('')->comment('门店简称');
             $table->string('quyu_id')->default('')->comment('区域ID');
             $table->string('qudao_id')->default('')->comment('区域ID');
+            $table->timestamp('created_at')->nullable();
             $table->timestamps();
             $table->unique('id'); 
         });
