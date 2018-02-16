@@ -23,7 +23,7 @@ class WeChatController extends Controller
 
     /**
      * 处理微信的请求消息
-     *
+     * https://github.com/overtrue/laravel-wechat
      * @return string
      */
     public function serve()
@@ -259,5 +259,6 @@ class WeChatController extends Controller
     {
 
     }
+
 
 }

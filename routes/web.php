@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::any('/wechat', 'WeChatController@serve');
 Route::any('/a', 'WeChatController@down');
 Route::any('/c', 'WeChatController@c');
@@ -22,7 +20,7 @@ Route::any('/cxbz', 'CxController@cxbenzhou');
 Route::any('/cxby', 'CxController@cxbenyue');
 Route::get('/quire', 'WeChatController@quire');
 Route::any('/mendian', 'MendianController@index');
-
+Route::any('api', 'ApiController@index');//微信消息上报使用
 
 Auth::routes();
 Route::redirect('/', '/home', 301);
@@ -32,6 +30,8 @@ Route::resource('mode', 'ModeController');
 Route::resource('qudao', 'QudaoController');
 Route::resource('zhengce', 'ZhengceController');
 Route::resource('sale', 'SaleController');
+Route::resource('xls', 'XlsController');
+
 
 
 //Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
@@ -49,3 +49,5 @@ Route::resource('sale', 'SaleController');
 //    $router->resource('zhengce', 'ZhengceController');
 //    $router->resource('sale', 'SaleController');
 //});
+
+
